@@ -1,0 +1,2 @@
+- this project using TYPESCRIPT + SWC, which is a lil different than only TYPESCRIPT, so need to be careful
+- every component need testing FIRST !
