@@ -1,5 +1,6 @@
 
 import './App.css'
+import BaseLayout from './components/base_layout/baseLayout'
 import Login from './components/login/login'
 
 function App() {
@@ -7,14 +8,10 @@ function App() {
 
   return (
     <>
-  
-      <h1>Vite + React</h1>
       
-      <Login arg="tesst" arg1={100} />
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BaseLayout>
+        <Login arg="tesst" arg1={100} />
+      </BaseLayout>
     </>
   )
 }
