@@ -12,3 +12,9 @@ before start, after install vite
 | Unit Tests      | Vitest                     |
 | Component Tests | React Testing Library      |
 | E2E Tests       | Cypress or Playwright  |
+
+
+3. configure testing environment
+ - install PACKAGES ==> npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
+ - Configure Vitest in vite.config.ts 
+ 
