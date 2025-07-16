@@ -10,6 +10,9 @@
 
 }
 
+.tr{
+    cursor: pointer;
+}
 .th {
     border: 1px solid white;
     padding: 10px;

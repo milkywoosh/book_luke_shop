@@ -2,7 +2,6 @@
 import data_table_meals from "../../data_sourcing_example/data_datatable";
 import MealDataTable from "./MealDataTable";
 
-
 import { render, screen } from '@testing-library/react';
 import { test, expect } from 'vitest';
 
