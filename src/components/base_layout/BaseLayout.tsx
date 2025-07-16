@@ -1,15 +1,22 @@
-
+import data_naming from "../../data_sourcing_api/data_naming";
 
 const BaseLayout = ({children}: any) => {
     return (
         <div className="">
-            <header className="">App Header</header>
-             <h1>Vite + React</h1>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
+            <header className="">================================================= App Header =================================================</header>
+             <h1>{data_naming.title_base_layout}</h1>
+
+            <p className="">
+                {data_naming.wording_base_layout1}
             </p>
+            <p className="">
+                {data_naming.wording_base_layout2}
+            </p>
+            <br></br>  {/* need to adjust space vertically */}
+            <br></br>
             <main className="">{children}</main>
-            <footer className="">App Footer</footer>
+            <br></br>
+            <footer className="">================================================= App Footer =================================================</footer>
         </div>
     )
 }
