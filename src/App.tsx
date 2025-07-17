@@ -4,25 +4,12 @@ import BaseLayout from './components/base_layout/BaseLayout'
 import MealDataTable from './components/meal_datatable/MealDataTable'
 import data_table_meals from './data_sourcing_example/data_datatable'
 import MealDetail from './components/meal_detail/MealDetail'
-import { useState } from 'react'
 
 
 
 function App() {
 
-  const [page, setPage] = useState({
-    prev: null,
-    curr: "/",
-    next: null,
-  })
 
-  if (page.curr === "/") {
-    setPage({
-      prev: null,
-      curr: "/meal-datatable",
-      next: null,
-    })
-  }
 
   return (
     <>
