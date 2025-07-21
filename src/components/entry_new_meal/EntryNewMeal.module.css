@@ -1,15 +1,18 @@
-.FormWrapper {
+.formWrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    ;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
 }
 
-.form {
+.formEntryMeal {
     display: flex;
     gap: 8px;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
