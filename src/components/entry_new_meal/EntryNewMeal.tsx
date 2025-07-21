@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styles from "./EntryNewMeal.module.css";
 import axios from "axios";
+import { base_url_dev } from "../../backend_api/base_url";
 
 
 const EntryNewMeal = () => {
@@ -24,7 +25,7 @@ const EntryNewMeal = () => {
 
         // how to handle error? => show error to pop up
 
-        axios.post("http://localhost:3000/meal-product/create", {
+        axios.post(`${base_url_dev}/meal-product/create`, {
         ...post_data
         })
         .then((res) => {

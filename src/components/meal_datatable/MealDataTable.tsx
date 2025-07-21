@@ -1,7 +1,7 @@
 import { useNavigate, type NavigateFunction } from 'react-router-dom'
 import styles from './MealDataTable.module.css'
 import { useEffect, useState } from 'react'
-import { GetAxios } from '../../fetch_api/fetch_axios'
+import { GetAxios } from '../../backend_api/fetch_axios'
 import data_table_meals from '../../data_sourcing_api/data_datatable'
 
 type data_meal_datatable = {
