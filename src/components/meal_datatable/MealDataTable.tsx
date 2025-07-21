@@ -6,7 +6,7 @@ import data_table_meals from '../../data_sourcing_api/data_datatable'
 
 type data_meal_datatable = {
     id: number,
-    meal_name: string
+    name: string
     price: number
 }
 
@@ -68,7 +68,7 @@ const MealDataTable = ({ data_source }: { data_source: data_meal_datatable[] }) 
                             onClick={() => HandleClickMealDetail(item.id)}
                             className={styles.tr}
                         >
-                            <td className={styles.td}>{item.meal_name}</td>
+                            <td className={styles.td}>{item.name}</td>
                             <td className={styles.td}>{item.price}</td>
                         </tr>
                     ))}
@@ -95,7 +95,7 @@ const MealDataTable = ({ data_source }: { data_source: data_meal_datatable[] }) 
                             onClick={() => HandleClickMealDetail(item.id)}
                             className={styles.tr}
                         >
-                            <td className={styles.td}>{item.meal_name}</td>
+                            <td className={styles.td}>{item.name}</td>
                             <td className={styles.td}>{item.price}</td>
                         </tr>
                     ))}
