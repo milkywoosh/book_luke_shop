@@ -20,7 +20,7 @@ function GetDetailByID(id: number): get_detail_result[] {
 const MealDetail = () => {
 
     const { id } = useParams()
-    
+
     if (!id) {
         return <div>Error id not received</div>
     }
@@ -29,19 +29,21 @@ const MealDetail = () => {
     // fetch data source filter by ID?
 
     const id_param: number = parseInt(id)
-    
+
     const detail = GetDetailByID(id_param)
 
     return (
         <div>
             {
-                detail.map((item: get_detail_result) => {
+                detail.map((item: get_detail_result, index: number) => {
                     return (
-                        <div>
-                            <h1>{item.meal_name}</h1>
-                            <h2> {item.intro}</h2>
-                            <p>{item.nutrition_fact}</p>
-                        </div>
+                        <li key={index}>
+                            <div>
+                                <h1>{item.meal_name}</h1>
+                                <h2> {item.intro}</h2>
+                                <p>{item.nutrition_fact}</p>
+                            </div>
+                        </li>
                     )
                 })
             }
