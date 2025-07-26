@@ -4,11 +4,13 @@ type ErrorPopUpMsg = {
     message: string,
     data: any
 }
+export type { ErrorPopUpMsg }; // export the type so i can be used anywhere
 
 type ErrorPopUpProps = {
     error: ErrorPopUpMsg;
     onClose: () => void;
 };
+
 
 const ErrorPopUp = (
     { error, onClose }: ErrorPopUpProps
