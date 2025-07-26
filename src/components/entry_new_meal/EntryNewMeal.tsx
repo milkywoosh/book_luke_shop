@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styles from "./EntryNewMeal.module.css";
 import axios from "axios";
 import { base_url_dev } from "../../backend_api/base_url";
-import ErrorPopUp from "../error/error_popup/ErrorPopUp";
+import ErrorPopUp, { type ErrorPopUpMsg } from "../error/error_popup/ErrorPopUp";
 import SuccessPopUp from "../success/success_popup/SuccessPopUp";
 
 
@@ -27,7 +27,7 @@ const EntryNewMeal = () => {
     const [successMsg, setSuccessMsg] = useState<string>("")
     const [successData, setSuccessData] = useState<any>(null)
 
-    
+
 
 
 
@@ -64,13 +64,13 @@ const EntryNewMeal = () => {
                     setSuccessNotif(true)
                     setSuccessMsg(res.data.message)
                 }
-                
+
                 setTimeout(() => {
                     setSuccessNotif(false);
                     // setSuccessMsg("");
                 }, 2000)
 
-                
+
             })
             .catch((err) => {
                 setName("")
@@ -78,7 +78,7 @@ const EntryNewMeal = () => {
                 setNutritionFact("")
                 setCurrency("")
                 setPrice(0)
-                
+
                 setPopUp(true)
                 // handle error catch from API backend
                 if (axios.isAxiosError(err)) {
@@ -94,11 +94,6 @@ const EntryNewMeal = () => {
             })
     }
 
-
-    // useEffect(()=> {
-
-    // }, [successNotif])
-
     function closePopUp() {
         setPopUp(false)
         setError(false)
@@ -111,9 +106,10 @@ const EntryNewMeal = () => {
 
     if (popUp && error) {
         return (
+
             <div className={styles.formWrapper}>
                 <ErrorPopUp
-                    error={{ message: errorMsg, data: errorData }}
+                    error={{ message: errorMsg, data: errorData } as ErrorPopUpMsg}
                     onClose={closePopUp}
                 />
             </div>
