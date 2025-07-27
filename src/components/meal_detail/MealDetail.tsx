@@ -1,3 +1,5 @@
+
+import styles from "./MealDetail.module.css"; 
 import { useParams } from "react-router-dom";
 // import data_meal_details from "../../data_sourcing_example/data_meal_detail"
 import axios from "axios";
@@ -32,13 +34,15 @@ const MealDetail = () => {
     const [error, setError] = useState<Boolean>(false);
     const [errorMsg, setErrorMsg] = useState<string>("");
     const [popUp, setPopUp] = useState<Boolean>(false);
+    const [pic, setPic] = useState<string | undefined>("");
 
 
     const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
 
-        // setIDParam(id)
+        // setIDParam(id)  ?? fetch picture from backend or UI fetch from certain server based on ID?
+
 
         if (id == null || id == undefined || id === "") {
 
@@ -57,10 +61,27 @@ const MealDetail = () => {
         } else {
             // const result = data_meal_details.filter((item) => item.id == id)
 
+            // fetch picture from BACKEND get raw()
+            axios.get(`${base_url_dev}/meal-product/picture/${id}`, {
+                responseType: 'blob',
+            })
+                .then((res) => {
+                    // fetch id of picture // res.data == picture raw data
+                    const imgUrl = URL.createObjectURL(res.data);
+                    setPic(imgUrl)
+                    // setPic();
+                })
+                .catch((err) => {
+                    console.log("err fetch pic: ", err)
+                })
+
+
+
             // change to fetch by ID by API backend
             axios.get(`${base_url_dev}/meal-product/meal/${id}`)
                 .then((res) => {
                     // console.log("res.data: ", res.data.body)
+
 
                     setDetailResponse({
                         data: res.data.body,
@@ -74,7 +95,7 @@ const MealDetail = () => {
                     setPopUp(true);
                     setError(true);
                     if (axios.isAxiosError(err)) {
-                        
+
                         if (err.code === "ERR_NETWORK") {
                             setErrorMsg(`Gangguan pada server. Silahkan coba lagi`);
                             setDetailResponse({
@@ -86,7 +107,7 @@ const MealDetail = () => {
                         } else {
                             const backendMsg = err.response?.data;
                             setErrorMsg(backendMsg?.message);
-                            
+
                             return
                         }
                     } else {
@@ -131,6 +152,7 @@ const MealDetail = () => {
                         <li key={item.id}>
                             <div>
                                 <h1>{item.name}</h1>
+                                <img className={styles.photo} src={pic} alt={item.name} />
                                 <h2> {item.info}</h2>
                                 <p>{item.nutrition_fact}</p>
                             </div>

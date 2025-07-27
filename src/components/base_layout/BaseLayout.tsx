@@ -26,7 +26,7 @@ const BaseLayout = ({ children }: any) => {
             <br></br>
             <main className="">{children}</main>
             <br></br>
-            <footer className="">=================================================  =================================================</footer>
+            <footer className="">Healthy Food for Lyfe</footer>
         </div>
     )
 }

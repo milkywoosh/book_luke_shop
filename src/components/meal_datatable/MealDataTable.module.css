@@ -10,16 +10,19 @@
 
 }
 
-.tr{
+
+.tr {
     cursor: pointer;
 }
+
 .th {
     border: 1px solid white;
     padding: 10px;
     text-align: center
 }
+
 .td {
     border: 1px solid white;
     padding: 10px;
-    text-align:justify
+    text-align: justify
 }
