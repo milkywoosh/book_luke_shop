@@ -10,7 +10,8 @@ const PageNavigation = () => {
         <div>
             <nav className={styles.navbar}>
                 <ul className={styles.menu}>
-                    <Link to={RoutesAll.meal_datatable}><ButtonNav children={<li>Home</li>} onclick={() => {}} /></Link>
+                    {/* <Link to={RoutesAll.meal_datatable}><ButtonNav children={<li>Home</li>} onclick={() => {}} /></Link> */}
+                    <Link to={RoutesAll.meal_datatable_aggrid}><ButtonNav children={<li>Home</li>} onclick={() => {}} /></Link>
                     <Link to={RoutesAll.register_new_meal}><ButtonNav children={<li>Register New Meal</li>} onclick={() => {}} /></Link>
                     
                 </ul>

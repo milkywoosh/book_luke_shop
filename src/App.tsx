@@ -5,9 +5,11 @@ import MealDataTable from './components/meal_datatable/MealDataTable'
 import data_table_meals from './data_sourcing_example/data_datatable'
 import MealDetail from './components/meal_detail/MealDetail'
 import EntryNewMeal from './components/entry_new_meal/EntryNewMeal'
+import MealDataTableAggrid from './components/meal_datatable_aggrid/MealDataTableAggrid'
 
 const RoutesAll = {
-  meal_datatable: "/",
+  // meal_datatable: "/",
+  meal_datatable_aggrid: "/",
   register_new_meal : "/register-meal"
 }
 
@@ -22,8 +24,9 @@ function App() {
 
     <BaseLayout>
       <Routes>
-        <Route path={RoutesAll.meal_datatable} element={<Navigate to="/meal-datatable" />} />
-        <Route path="/meal-datatable" element={<MealDataTable data_source={data_table_meals} />} />
+        <Route path={RoutesAll.meal_datatable_aggrid} element={<Navigate to="/meal-datatable" />} />
+        {/* <Route path="/meal-datatable" element={<MealDataTable data_source={data_table_meals} />} /> */}
+        <Route path="/meal-datatable" element={<MealDataTableAggrid data_source={data_table_meals} />} />
         <Route path="/meal-detail/:id" element={<MealDetail />} />
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
         <Route path={RoutesAll.register_new_meal} element={<EntryNewMeal />} />
