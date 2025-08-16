@@ -1,11 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './MealDataTableAggrid.module.css'
 import { useEffect, useState } from 'react'
 import data_table_meals from '../../data_sourcing_api/data_datatable'
 import axios from 'axios'
 import ErrorPopUp, { type ErrorPopUpMsg } from '../error/error_popup/ErrorPopUp'
 
-import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
+import { ModuleRegistry, AllCommunityModule, themeQuartz } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import type { ColDef } from "ag-grid-community";
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -22,13 +22,17 @@ const defaultColDef: ColDef = {
 };
 // how to make a cell is click-able and go to another page?
 
+const MealDataTableAggridTheme = themeQuartz.withParams({
+    backgroundColor: 'rgba(255, 255, 255, 1)',
+    foregroundColor: 'rgba(255, 255, 255, 1)',
+    headerTextColor: 'rgba(255, 255, 255, 1)',
+    headerBackgroundColor: 'rgba(72, 69, 71, 1)',
+    headerColumnResizeHandleColor: 'rgba(255, 255, 255, 1)',
+    fontFamily: "system-ui, Avenir, Helvetica, Arial, sans-serif",
+})
 const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable[] }) => {
-    const navigate = useNavigate();
 
-    function HandleClickMealDetail(id: number) {
-        // go to this route, which is defined in App.tsx
-        navigate(`/meal-detail/${id}`);
-    }
+
 
     function closePopUp() {
         setError(false);
@@ -57,11 +61,11 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
                     <Link
                         to={`/meal-detail/${params.data.id}`}
                         style={{
-                            color: '#272b57ff',
+                            color: '#ffffffff',
                             cursor: 'pointer'
                         }}
                     >
-                        {params.data.id} 
+                        {params.data.id}
                     </Link>
                 );
             }
@@ -74,7 +78,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
                     <Link
                         to={`/meal-detail/${params.data.id}`}
                         style={{
-                            color: '#272b57ff',
+                            color: '#ffffffff',
                             cursor: 'pointer'
                         }}
                     >
@@ -91,7 +95,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
                     <Link
                         to={`/meal-detail/${params.data.id}`}
                         style={{
-                            color: '#272b57ff',
+                            color: '#ffffffff',
                             cursor: 'pointer'
                         }}
                     >
@@ -173,11 +177,14 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
             />
         </div>)
     }
-    
+
     return (
         // Data Grid will fill the size of the parent container
-        <div style={{ height: 800, width: 1000 }}>
+        <div
+            
+            style={{ height: 800, width: 1000 }}>
             <AgGridReact
+                theme={MealDataTableAggridTheme}
                 rowData={mealDataTable}
                 columnDefs={colDefs}
                 defaultColDef={defaultColDef}

@@ -7,7 +7,7 @@ import { RoutesAll } from "../../App";
 const PageNavigation = () => {
     // note: link route page mengikuti path di App.tsx
     return (
-        <div>
+        <>
             <nav className={styles.navbar}>
                 <ul className={styles.menu}>
                     {/* <Link to={RoutesAll.meal_datatable}><ButtonNav children={<li>Home</li>} onclick={() => {}} /></Link> */}
@@ -17,7 +17,7 @@ const PageNavigation = () => {
                 </ul>
             </nav>
 
-        </div>
+        </>
     )
 };
 
