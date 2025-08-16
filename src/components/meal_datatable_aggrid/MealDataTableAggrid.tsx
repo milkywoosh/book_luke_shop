@@ -35,6 +35,15 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
         setPopUp(false);
     }
 
+    function HandleClickMealRow(params: any) {
+        console.log("check params: ", params.data)
+        return (
+            <Link
+                to={`/meal-detail/${params.data.id}`}
+            />
+
+        );
+    }
 
 
     // note: ColDef => Column Definition, wrapping for data_meal_datatable
@@ -43,39 +52,52 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
         {
             field: "id",
             cellStyle: { textAlign: 'left' },
-            // tooltipValueGetter: params => {
-            //     // return `Full name: ${params.value}`;
-            //     console.log(params.value)
-            // },
             cellRenderer: (params: any) => {
                 return (
                     <Link
-                        to={`/meal-detail/${params.value}`}
+                        to={`/meal-detail/${params.data.id}`}
                         style={{
                             color: '#272b57ff',
-                            // textDecoration: 'underline',
                             cursor: 'pointer'
                         }}
                     >
-                        {params.value}
+                        {params.data.id} 
                     </Link>
                 );
             }
-
-
         },
         {
             field: "name",
             cellStyle: { textAlign: 'left' },
-            tooltipValueGetter: params => {
-                return `Full name: ${params.value}`;
+            cellRenderer: (params: any) => {
+                return (
+                    <Link
+                        to={`/meal-detail/${params.data.id}`}
+                        style={{
+                            color: '#272b57ff',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        {params.data.name}
+                    </Link>
+                );
             }
         },
         {
             field: "price",
             cellStyle: { textAlign: 'left' },
-            tooltipValueGetter: params => {
-                return `Full name: ${params.value}`;
+            cellRenderer: (params: any) => {
+                return (
+                    <Link
+                        to={`/meal-detail/${params.data.id}`}
+                        style={{
+                            color: '#272b57ff',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        {params.data.price}
+                    </Link>
+                );
             }
         },
     ]);
@@ -186,6 +208,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
                 rowData={mealDataTable}
                 columnDefs={colDefs}
                 defaultColDef={defaultColDef}
+                onRowClicked={HandleClickMealRow}
 
 
             />
