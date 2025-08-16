@@ -173,34 +173,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
             />
         </div>)
     }
-
-    if (error) return (
-        <div className={styles.container}>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th className={styles.th}>Meal Name</th>
-                        <th className={styles.th}>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {mealDataTable.map((item, index) => (
-                        <tr
-                            key={index}
-                            onClick={() => HandleClickMealDetail(item.id)}
-                            className={styles.tr}
-                        >
-                            <td className={styles.td}>{item.name}</td>
-                            <td className={styles.td}>{item.price}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-        </div>
-    )
-
-
+    
     return (
         // Data Grid will fill the size of the parent container
         <div style={{ height: 800, width: 1000 }}>
