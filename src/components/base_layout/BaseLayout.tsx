@@ -8,10 +8,6 @@ const BaseLayout = ({ children }: any) => {
 
     return (
         <div className="">
-            <header className="">
-                <button onClick={() => navigate(-1)}> Prev </button>
-                <button onClick={() => navigate(+1)}> Next </button>
-            </header>
             <PageNavigation />
 
             <h1>{data_naming.title_base_layout}</h1>
