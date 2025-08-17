@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './MealDataTableAggrid.module.css'
 import { useEffect, useState } from 'react'
-import data_table_meals from '../../data_sourcing_api/data_datatable'
+import { data_table_meals } from '../../data_sourcing_api/data_apil_all'
 import axios from 'axios'
 import ErrorPopUp, { type ErrorPopUpMsg } from '../error/error_popup/ErrorPopUp'
 
@@ -53,23 +53,6 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
     // note: ColDef => Column Definition, wrapping for data_meal_datatable
     // Column Definitions: Defines the columns to be displayed.
     const [colDefs, setColDefs] = useState<ColDef<data_meal_datatable>[]>([
-        {
-            field: "id",
-            cellStyle: { textAlign: 'left' },
-            cellRenderer: (params: any) => {
-                return (
-                    <Link
-                        to={`/meal-detail/${params.data.id}`}
-                        style={{
-                            color: '#ffffffff',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        {params.data.id}
-                    </Link>
-                );
-            }
-        },
         {
             field: "name",
             cellStyle: { textAlign: 'left' },
@@ -181,7 +164,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
     return (
         // Data Grid will fill the size of the parent container
         <div
-            
+
             style={{ height: 800, width: 1000 }}>
             <AgGridReact
                 theme={MealDataTableAggridTheme}

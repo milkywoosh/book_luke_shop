@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import styles from './MealDataTable.module.css'
 import { useEffect, useState } from 'react'
-import data_table_meals from '../../data_sourcing_api/data_datatable'
+import data_table_meals from '../../data_sourcing_api/data_apil_all'
 import axios from 'axios'
 import ErrorPopUp, { type ErrorPopUpMsg } from '../error/error_popup/ErrorPopUp'
 

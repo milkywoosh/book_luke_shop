@@ -13,7 +13,7 @@ const PageNavigation = () => {
                     {/* <Link to={RoutesAll.meal_datatable}><ButtonNav children={<li>Home</li>} onclick={() => {}} /></Link> */}
                     <Link to={RoutesAll.meal_datatable_aggrid}><ButtonNav children={<li>Home</li>} onclick={() => {}} /></Link>
                     <Link to={RoutesAll.register_new_meal}><ButtonNav children={<li>Register New Meal</li>} onclick={() => {}} /></Link>
-                    
+                    <Link to={RoutesAll.list_of_packages}><ButtonNav children={<li>List of Packages</li>} onclick={() => {}} /></Link>
                 </ul>
             </nav>
 

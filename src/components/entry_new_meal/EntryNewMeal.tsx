@@ -116,17 +116,6 @@ const EntryNewMeal = () => {
         )
     }
 
-    if (successNotif) {
-        return (
-            <div className={styles.formWrapper}>
-                <SuccessPopUp
-                    success={{ message: successMsg, data: successData }}
-                    onClose={closePopUp}
-                />
-            </div>
-        )
-    }
-
     return (
         <div className={styles.formWrapper}>
             <div>
