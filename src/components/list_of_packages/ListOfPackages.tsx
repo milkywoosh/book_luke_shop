@@ -10,7 +10,7 @@ import type { ColDef } from "ag-grid-community";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 type ListOfPackagesProps = {
-    package_name: string
+    name: string
 }
 
 
@@ -39,9 +39,11 @@ const ListOfPackages = () => {
 
     const [colDefs, setColDefs] = useState<ColDef<ListOfPackagesProps>[]>([
         {
-            field: "package_name",
+            field: "name",
             headerName: "Package Name",
             cellStyle: { textAlign: 'center' },
+            headerClass: "ag-center-header",
+
         }
     ])
 
@@ -93,11 +95,17 @@ const ListOfPackages = () => {
         return (<ErrorPopUp error={{ message: errorMsg, data: null } as ErrorPopUpMsg} onClose={closePopUp} />)
     }
 
-    return (< div style={{ height: 800, width: 1000 }}>
+    return (< div style={{ height: 300, width: 600, margin: 'auto' }}>
         <AgGridReact
             theme={ListOfPackagesAggridTheme}
             rowData={listOfPackages}
             columnDefs={colDefs}
+            defaultColDef={{
+                flex: 1,            // each column takes equal available space
+                minWidth: 100,      // prevent too small
+                resizable: true,
+            }}
+            domLayout="autoHeight"
         />
     </div>)
 }

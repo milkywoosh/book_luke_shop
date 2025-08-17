@@ -165,7 +165,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
         // Data Grid will fill the size of the parent container
         <div
 
-            style={{ height: 800, width: 1000 }}>
+            style={{ height: 300, width: 600 }}>
             <AgGridReact
                 theme={MealDataTableAggridTheme}
                 rowData={mealDataTable}

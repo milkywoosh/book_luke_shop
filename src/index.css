@@ -29,6 +29,14 @@
 
 }
 
+.ag-header-cell-label {
+  justify-content: center;
+  /* centers text inside header cell */
+}
+
+.ag-center-header .ag-header-cell-label {
+  justify-content: center;
+}
 
 
 a {
