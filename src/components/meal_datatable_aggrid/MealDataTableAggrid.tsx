@@ -55,7 +55,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
     const [colDefs, setColDefs] = useState<ColDef<data_meal_datatable>[]>([
         {
             field: "name",
-            cellStyle: { textAlign: 'left' },
+            cellStyle: { textAlign: 'center' },
             cellRenderer: (params: any) => {
                 return (
                     <Link
@@ -72,7 +72,7 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
         },
         {
             field: "price",
-            cellStyle: { textAlign: 'left' },
+            cellStyle: { textAlign: 'center' },
             cellRenderer: (params: any) => {
                 return (
                     <Link
