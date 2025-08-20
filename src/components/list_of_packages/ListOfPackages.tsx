@@ -1,7 +1,8 @@
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { list_of_packages_api } from "../../data_sourcing_api/data_apil_all";
+import { list_of_packages_api } from "../../data_sourcing_api/data_api_all";
 import ErrorPopUp, { type ErrorPopUpMsg } from "../error/error_popup/ErrorPopUp";
 
 import { ModuleRegistry, AllCommunityModule, themeQuartz } from 'ag-grid-community';
@@ -43,6 +44,20 @@ const ListOfPackages = () => {
             headerName: "Package Name",
             cellStyle: { textAlign: 'center' },
             headerClass: "ag-center-header",
+            cellRenderer: (params: any) => {
+                return (
+                    <Link
+                        to={`/package-type/detail/${params.data.id}`}
+                        style={{
+                            color: '#ffffffff',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        {params.data.name}
+                    </Link>
+                );
+            }
+
 
         }
     ])

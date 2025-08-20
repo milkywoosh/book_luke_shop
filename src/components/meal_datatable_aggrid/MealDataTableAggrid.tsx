@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './MealDataTableAggrid.module.css'
 import { useEffect, useState } from 'react'
-import { data_table_meals } from '../../data_sourcing_api/data_apil_all'
+import { data_table_meals } from '../../data_sourcing_api/data_api_all'
 import axios from 'axios'
 import ErrorPopUp, { type ErrorPopUpMsg } from '../error/error_popup/ErrorPopUp'
 
@@ -133,7 +133,6 @@ const MealDataTableAggrid = ({ data_source }: { data_source: data_meal_datatable
 
                         setErrorMsg(`Something went wrong`);
                         setMealDataTable([]);
-                        setLoading(false);
                     }
 
                 })
