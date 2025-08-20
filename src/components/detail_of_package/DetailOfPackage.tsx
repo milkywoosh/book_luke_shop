@@ -32,11 +32,12 @@ const DetailsOfPackage = () => {
         setError(false);
         setPopUp(false);
     }
+
     // function HandleClickPackageRow(params: any) {
-    //     console.log('params detail pacakge: ', params)
+    //     console.log('params detail pacakge: ', params.data.id)
     //     return (
     //         <Link
-    //             to={`/package-type/detail/${params.data.id}`}
+    //             to={`/meal-detail/${params.data.id}`}
     //         />
     //     )
     // }
@@ -53,7 +54,7 @@ const DetailsOfPackage = () => {
             cellRenderer: (params: any) => {
                 return (
                     <Link
-                        to={`/package-type/detail/${params.data.id}`}
+                        to={`/meal-detail/${params.data.id}`}
                         style={{
                             color: '#ffffffff',
                             cursor: 'pointer'
@@ -129,7 +130,8 @@ const DetailsOfPackage = () => {
                 rowData={detailPackage}
                 columnDefs={colDefs}
                 defaultColDef={defaultColDef}
-                
+                // onRowClicked={HandleClickPackageRow}
+
             />
         </div>
     )
