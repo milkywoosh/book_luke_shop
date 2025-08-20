@@ -9,6 +9,7 @@ import { ModuleRegistry, AllCommunityModule, themeQuartz } from 'ag-grid-communi
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import type { ColDef } from "ag-grid-community";
 import { base_url_dev } from "../../backend_api/base_url";
+import ButtonDefault from "../buttons/button_nav/ButtonDefault";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 type details_of_package = {
@@ -78,7 +79,7 @@ const DetailsOfPackage = () => {
 
         const fetchDataDetailOfPackage = async () => {
             axios.get(`${base_url_dev}/package-type/detail/${id}`).then((res) => {
-                console.log("rruuuu: ", res.data.body)
+                
                 setDetailPackage(res.data.body)
                 setError(false);
                 setPopUp(false);
@@ -130,9 +131,10 @@ const DetailsOfPackage = () => {
                 rowData={detailPackage}
                 columnDefs={colDefs}
                 defaultColDef={defaultColDef}
-                // onRowClicked={HandleClickPackageRow}
+            // onRowClicked={HandleClickPackageRow}
 
             />
+            <ButtonDefault> Add + </ButtonDefault>
         </div>
     )
 }
