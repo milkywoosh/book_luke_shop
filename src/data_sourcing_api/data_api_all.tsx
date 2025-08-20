@@ -4,6 +4,8 @@ const data_table_meals: string = `${base_url_dev}/meal-product/datatable`
 
 const list_of_packages_api: string = `${base_url_dev}/list-of-packages`
 
+const detail_of_package_api: string = `${base_url_dev}/package-type/detail/:id`
+
 const meal_detail_id: string = `${base_url_dev}/meal-detail/:id`
 export {
     data_table_meals,
