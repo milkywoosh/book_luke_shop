@@ -5,7 +5,7 @@ import data_animal from "../../data_sourcing_api/data_animal";
 
 const BoxWrapper = () => {
 
-    const chunked_data_animal = chunk_arr_of_obj(data_animal, 5)
+    const chunked_data_animal = chunk_arr_of_obj(data_animal, 4)
 
     return (
         <div className="flex flex-row">
