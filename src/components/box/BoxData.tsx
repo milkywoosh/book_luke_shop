@@ -1,17 +1,18 @@
 
+type BoxDataProps = {
+    data: { name: string }[]
+}
 
-const data: string[] = ["cat", "elephant", "turtle", "owl"]
-
-const BoxData = () => {
+const BoxData = ({ data }: BoxDataProps) => {
     return (
         <div >
-            <ul className="flex flex-row">
+            <ul className="flex flex-col">
                 {
                     data.map((e, i) => {
                         return (
-                            <li key={i}>
-                                <div className=" items-center justify-center border border-green-500 pt-5 pb-5">
-                                    {e}
+                            <li className="px-3 py-3 " key={i}>
+                                <div className=" text-center border border-green-500 px-5 py-5">
+                                    {e.name}
                                 </div>
                             </li>
                         );
