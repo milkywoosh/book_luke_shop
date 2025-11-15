@@ -1,22 +1,13 @@
-import data_naming from "../../data_sourcing_api/data_naming";
+import "../../index.css"; // note: wajib import!
 
-const BaseLayout = ({children}: any) => {
+const BaseLayout = ({ children }: any) => {
     return (
-        <div className="">
-            <header className="">================================================= App Header =================================================</header>
-             <h1>{data_naming.title_base_layout}</h1>
-
-            <p className="">
-                {data_naming.wording_base_layout1}
-            </p>
-            <p className="">
-                {data_naming.wording_base_layout2}
-            </p>
-            <br></br>  {/* need to adjust space vertically */}
-            <br></br>
-            <main className="">{children}</main>
-            <br></br>
-            <footer className="">================================================= App Footer =================================================</footer>
+        // <div className="bg-black min-h-screen flex flex-col">
+        // <div className="min-h-screen flex flex-col items-center bg-black justify-center text-green-500 border-2 border-green-500">
+        <div className="min-h-screen flex flex-col items-center bg-black justify-center text-green-500 border-2 border-green-500">
+            <header className="mb-3">========== App Header ==========</header>
+            <main className="mb-3">{children}</main>
+            <footer className="mb-3">========== App Footer ==========</footer>
         </div>
     )
 }

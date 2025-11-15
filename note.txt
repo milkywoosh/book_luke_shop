@@ -12,3 +12,9 @@ before start, after install vite
 | Unit Tests      | Vitest                     |
 | Component Tests | React Testing Library      |
 | E2E Tests       | Cypress or Playwright  |
+
+
+========== TAILWIND NOTE =================
+reference installation: https://v3.tailwindcss.com/docs/guides/vite
+using installation postcss 3.4.17
+
