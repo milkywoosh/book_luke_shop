@@ -11,7 +11,7 @@ const BoxData = ({ data }: BoxDataProps) => {
                     data.map((e, i) => {
                         return (
                             <li className="px-3 py-3 " key={i}>
-                                <div className=" text-center border border-green-500 px-5 py-5">
+                                <div className=" text-center border border-green-500 px-5 py-5 hover:bg-green-600">
                                     {e.name}
                                 </div>
                             </li>
