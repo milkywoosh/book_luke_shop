@@ -13,8 +13,15 @@ before start, after install vite
 | Component Tests | React Testing Library      |
 | E2E Tests       | Cypress or Playwright  |
 
-
+FOKUS DI MODUL INI [ TAILWIND, REACT ROUTER ]
+                    ========================
 ========== TAILWIND NOTE =================
 reference installation: https://v3.tailwindcss.com/docs/guides/vite
 using installation postcss 3.4.17
 
+
+========== REACT-ROUTER NOTE =================
+ada 3 modes
+- DECLARATIVE (currently using this)
+- DATA
+- FRAMEWORK
