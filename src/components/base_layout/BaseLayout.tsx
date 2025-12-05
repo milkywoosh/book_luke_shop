@@ -3,14 +3,21 @@ import NavBar from "../nav_bar/NavBar";
 
 const BaseLayout = ({ children }: any) => {
     return (
-        // <div className="bg-black min-h-screen flex flex-col">
-        // <div className="min-h-screen flex flex-col items-center bg-black justify-center text-green-500 border-2 border-green-500">
-        <div className="min-h-screen flex flex-col items-center bg-black justify-center text-green-500  border-green-500">
-            <header className="px-3 py-3">========== App Header ==========</header>
-            <NavBar />
-            <main className="px-3 py-3 items items-center border border-green-500 ">{children}</main>
-            <footer className="px-3 py-3">========== App Footer ==========</footer>
+
+        <div className="border border-green-500 flex flex-row sm:flex-col gap-1 min-h-screen w-screen bg-black">
+            {/* <header className="px-3 py-3">========== App Header ==========</header> */}
+            <div className="flex flex-row sm:w-full bg-black">
+                <div className="items-center hidden sm:block px-3 py-3 text-center text-green-500 border border-green-500">
+                    <span>XCMT</span>
+                </div>
+                <NavBar />
+            </div>
+            <main className="flex flex-1 w-full flex-col sm:flex-row sm:justify-center  text-green-500">
+                {children}
+            </main>
+            {/* <footer className="px-3 py-3">========== App Footer ==========</footer> */}
         </div>
+
     )
 }
 
