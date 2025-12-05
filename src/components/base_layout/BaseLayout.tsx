@@ -4,10 +4,10 @@ import NavBar from "../nav_bar/NavBar";
 const BaseLayout = ({ children }: any) => {
     return (
 
-        <div className="border border-green-500 flex flex-row sm:flex-col gap-1 min-h-screen w-screen bg-black">
+        <div className="border border-green-500 flex flex-row sm:flex-col  min-h-screen w-screen bg-black">
             {/* <header className="px-3 py-3">========== App Header ==========</header> */}
-            <div className="flex flex-row sm:w-full bg-black">
-                <div className="items-center hidden sm:block px-3 py-3 text-center text-green-500 border border-green-500">
+            <div className="flex flex-row sm:w-full bg-black sm:sticky sm:top-0">
+                <div className="items-center hidden sm:block px-3 py-3 text-center text-green-500 border border-green-500 ">
                     <span>XCMT</span>
                 </div>
                 <NavBar />
