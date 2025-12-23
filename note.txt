@@ -25,3 +25,21 @@ ada 3 modes
 - DECLARATIVE (currently using this)
 - DATA
 - FRAMEWORK
+
+========== TABLE/ DATATABLE ==>>> TANSTACK/ REACT-TABLE =================
+
+npm install @tanstack/react-table
+
+
+========== CASE CHECK CLASSNAME =================
+source: https://www.youtube.com/watch?v=tZV_Ax9TyUY menit 14.50
+
+container (only exists in v3 not v4) <??>
+
+object-cover | rounded-l<left>-4xl<lengkungan>
+object-cover | rounded-tl<top-left>-4xl<lengkungan>
+
+hidden <meng-hide element>
+
+mx-auto<margin auto left and right>
+
