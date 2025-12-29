@@ -29,6 +29,10 @@ ada 3 modes
 ========== TABLE/ DATATABLE ==>>> TANSTACK/ REACT-TABLE =================
 
 npm install @tanstack/react-table
+npm i @tanstack/react-query
+
+const table = useReactTable(options) // pelajari .API() dari useReactTable()
+
 
 
 ========== CASE CHECK CLASSNAME =================

@@ -11,12 +11,16 @@ export type Person = {
 }
 
 export type Product = {
-  id: number
+  productId: number
   productCode: string
   categoryId: number
   createdBy: number
   subRows?: Product[]
 }
+
+export type DatatableProductCp1 = Product & {
+  rowId: number;
+};
 
 const range = (len: number) => {
   const arr: number[] = []
@@ -41,9 +45,10 @@ const newPerson = (): Person => {
   }
 }
 
-const newProduct = (): Product => {
+const newProduct = (): DatatableProductCp1 => {
   return {
-    id: faker.number.int({ min: 1, max: 100 }),
+    rowId: faker.number.int({min: 1, max: 100}),
+    productId: faker.number.int({ min: 1, max: 100 }),
     productCode: faker.book.publisher(),
     categoryId: faker.number.int({ min: 1, max: 10 }),
     createdBy: faker.number.int({ min: 1, max: 5 }),
@@ -65,9 +70,9 @@ export function makeData(...lens: number[]) {
 }
 
 export function makeDataProduct(...lens: number[]) {
-  const makeDataLevel = (depth = 0): Product[] => {
+  const makeDataLevel = (depth = 0): DatatableProductCp1[] => {
     const len = lens[depth]!
-    return range(len).map((d): Product => {
+    return range(len).map((d): DatatableProductCp1 => {
       return {
         ...newProduct(),
         subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
