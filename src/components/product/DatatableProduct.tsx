@@ -14,6 +14,11 @@ import axios, { } from "axios";
 
 /*
 
+note DatatableProduct:
+
+using pagination
+
+
 "id": 2,
 "product_code": "50MW2HW01",
 "brand": "HUAWEI",
@@ -205,19 +210,19 @@ const ProductDatatable = () => {
           {/* <footer className="flex flex-row gap-10"> */}
 
         </table>
-        <div className="w-full">
-          <div className="flex flex-row items-center justify-between p-4 w-full">
+        <div className="w-full ">
+          <div className="flex flex-row items-center justify-between p-2 w-full">
             {/* Left Group: First and Prev */}
             <div className="flex items-center gap-4">
               <button
                 onClick={() => firstPage()}
-                className="hover:text-blue-600 transition-colors"
+                className="w-24 border-2 border-green-500 px-2 hover:text-blue-600 transition-colors"
               >
                 <span>first page</span>
               </button>
               <button
                 onClick={() => prevPage()}
-                className="hover:text-blue-600 transition-colors"
+                className="w-24 border-2 border-green-500 px-2 hover:text-blue-600 transition-colors"
               >
                 <span>prev</span>
               </button>
@@ -226,7 +231,7 @@ const ProductDatatable = () => {
             {/* Right Group: Next */}
             <button
               onClick={() => nextPage()}
-              className="hover:text-blue-600 transition-colors"
+              className="w-24 border-2 border-green-500 px-2 hover:text-blue-600 transition-colors"
             >
               <span>next</span>
             </button>

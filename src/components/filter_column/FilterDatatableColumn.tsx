@@ -73,7 +73,7 @@ export default function Filter({ column }: { column: Column<any, unknown> }) {
 function DebouncedInput({
   value: initialValue,
   onChange,
-  debounce = 500,
+  debounce = 1000,
   ...props
 }: {
   value: string | number;

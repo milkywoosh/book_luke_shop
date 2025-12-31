@@ -13,9 +13,10 @@ import "@tanstack/react-query";
 
 import { useQuery } from "@tanstack/react-query";
 // import { makeDataProduct } from "./MakeData";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Filter from "../filter_column/FilterDatatableColumn";
+import PopUp from "../pop_up/PopUpBasic";
 
 declare module '@tanstack/react-table' {
   //allows us to define custom properties for our columns
@@ -39,10 +40,6 @@ type DatatableProduct = {
   id: number
 }
 
-type ColFilterProduct = Array<{ id: string, value: any }>;
-
-
-
 const columnHelper = createColumnHelper<DatatableProduct>();
 const columns: ColumnDef<DatatableProduct, any>[] = [
   // flat array
@@ -53,7 +50,8 @@ const columns: ColumnDef<DatatableProduct, any>[] = [
       // const { pageIndex, pageSize } = info.table.getState().pagination;
       // return pageIndex * pageSize + info.row.index + 1;
       return info.getValue();
-    }
+    },
+    enableColumnFilter: false,
   }),
   columnHelper.accessor('product_code', {
     id: 'product_code',
@@ -88,13 +86,9 @@ const requestDatatableFn = async (pagination: PaginationState, colFilterParam: C
   const params = new URLSearchParams({
     offset: pageIndex.toString(),
     fetchRows: pageSize.toString(),
-    // ...(colFilterParam.filter(val => val.id == 'product_id' ) && {productId: colFilterParam.product_id}),
-    // ...(colFilterParam.product_code && {productCode: colFilterParam.product_code}),
-    // ...(colFilterParam.brand && {productBrand: colFilterParam.brand}),
-    // ...(colFilterParam.type && {productType: colFilterParam.type}),
   })
 
-  const mappingReq: {[key: string]: string} = {
+  const mappingReq: { [key: string]: string } = {
     product_code: "productCode",
     brand: "productBrand",
     type: "productType",
@@ -106,19 +100,44 @@ const requestDatatableFn = async (pagination: PaginationState, colFilterParam: C
     params.append(mappingReq[val.id] as string, val.value as string)
   })
 
-  console.log("ceess params: ", params);
-  console.log("ceess params.toString(): ", params.toString());
-
-  // parsing parameter dah OKE
+  // console.log("ceess params: ", params);
+  // console.log("ceess params.toString(): ", params.toString());
 
 
-  const url_product = "https://item-management-dev-int-newscmt-dev.apps.kpaasjtn1.telkom.co.id"
-  const result = await axios.get(`${url_product}/datatable-product-be?${params.toString()}`, {})
-  if (result.status != 200) {
-    return [];
-  }
 
-  return result.data.body;
+  // const url_product = "https://item-management-dev-int-newscmt-dev.apps.kpaasjtn1.telkom.co.id"
+  const url_product = "http://localhost:5000"
+  // const result = await axios.get(`${url_product}/datatable-product-be?${params.toString()}`, {})
+  return axios.get(`${url_product}/datatable-product-be?${params.toString()}`, {})
+    .then(res => {
+      // console.log("resss: ", res)
+      return res.data.body;
+    })
+    .catch((err) => {
+      const err_val = { ...err }
+      return err_val
+      // console.log("err_val: ", err_val)
+      // if (err_val.code === "ERR_NETWORK") {
+      //   return {
+      //     status: err_val.status,
+      //     body: [],
+      //     message: err_val.message,
+
+      //   }
+      // }
+      // return {
+      //   status: err_val.status,
+      //   body: [],
+      //   message: err_val.message,
+
+      // }
+    });
+  // console.log("cek curr result: ", result.statusText)
+  // if (result.status != 200) {
+  //   return [];
+  // }
+
+  // return result.data.body;
 }
 
 
@@ -133,6 +152,22 @@ const ProductDatatableV2 = () => {
 
   // const [colFilterProduct, setColFilterProduct] = useState<ColFilterProduct>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
+  const handleColumnFilterChange = (updater: any) => {
+    console.log(updater)
+    setColumnFilters(updater);
+
+    setPagination((prev) => {
+      return {
+        ...prev,
+        pageIndex: 0
+      }
+    });
+  };
+
+
+  const [popUpError, setPopUpError] = useState<boolean>(false);
+
 
   const firstPage = () => setPagination((current: PaginationState) => {
     if (current.pageIndex > 0) {
@@ -168,6 +203,15 @@ const ProductDatatableV2 = () => {
     }
 
   });
+  const resetFilter = () => {
+    // edge case gimana klo rows sudah max???
+    setColumnFilters([]);
+    setPagination({
+      pageIndex: 0,
+      pageSize: 10,
+    })
+
+  };
 
   // note: filterProductIdFn dipake di column filter!
   // const filterColsFn = (col_filter: string, value: string) => setColFilterProduct((prevState: ColFilterProduct) => {
@@ -191,21 +235,46 @@ const ProductDatatableV2 = () => {
 
       return requestDatatableFn(PaginationStateVal, colFilterProductVal)
     },
+    placeholderData: (previousData) => previousData, // This prevents the flicker/reset
     refetchOnWindowFocus: false,   // Disable refetch on window focus
     refetchOnMount: false,         // Disable refetch when component mounts
     refetchOnReconnect: false,
   })
 
   const table = useReactTable({
-    data: dataSource ?? [], // data hasil fetch URL langsung dipake hook ini untuk render table
+    data: dataSource ?? [], // data hasil fetch URL useQuery langsung dipake hook ini untuk render table
     columns,
     state: {
       columnFilters
     },
-    onColumnFiltersChange: setColumnFilters,
+    onColumnFiltersChange: handleColumnFilterChange, //setColumnFilters, handleColumnFilterChange ==> note: this function trigger unpredictable behaviour
     getCoreRowModel: getCoreRowModel(),
     manualFiltering: true,
+    manualPagination: true,
+
+    // DISABLE these to stop the "snap back" behavior
+    autoResetPageIndex: false,
+    autoResetExpanded: false,
   });
+
+  // console.log("dataSource: ", dataSource)
+  // console.log("isErrDataSource: ", isErrDataSource)
+  // console.log("errInfoDataSource: ", errInfoDataSource)
+  // console.log("b4 useEffect table", table);
+  // console.log("b4 useEffect dataSource", dataSource);
+
+  // useEffect(() => {
+
+  //   if (dataSource?.code === "ERR_NETWORK") {
+  //     console.log("siniiiii", popUpError)
+  //     console.log("isErrDataSource", isErrDataSource)
+  //     console.log("errInfoDataSource", errInfoDataSource)
+  //     console.log("dataSource", dataSource)
+  //     // trigger pop up 5 secs
+  //     setPopUpError(true);
+  //   }
+  // }, []);
+
 
 
   if (isLoading) {
@@ -213,6 +282,11 @@ const ProductDatatableV2 = () => {
       <h2> {"Loading"} </h2>
     </>);
   }
+
+  if (popUpError) {
+    return (<PopUp message={dataSource?.message} onClose={() => setPopUpError(false)} />);
+  }
+
 
   if (isErrDataSource) {
     return (<>
@@ -283,11 +357,19 @@ const ProductDatatableV2 = () => {
               >
                 <span>first page</span>
               </button>
+
               <button
                 onClick={() => prevPage()}
                 className="w-24 border-2 border-green-500 px-2 hover:text-blue-600 transition-colors"
               >
                 <span>prev</span>
+              </button>
+
+              <button
+                onClick={() => resetFilter()}
+                className="w-24 border-2 border-green-500 px-2 hover:text-blue-600 transition-colors"
+              >
+                <span>reset filter</span>
               </button>
             </div>
 
