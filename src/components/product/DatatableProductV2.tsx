@@ -140,9 +140,6 @@ const requestDatatableFn = async (pagination: PaginationState, colFilterParam: C
   // return result.data.body;
 }
 
-
-
-
 const ProductDatatableV2 = () => {
 
   const [pagination, setPagination] = useState<PaginationState>({
@@ -283,16 +280,14 @@ const ProductDatatableV2 = () => {
     </>);
   }
 
-  if (popUpError) {
-    return (<PopUp message={dataSource?.message} onClose={() => setPopUpError(false)} />);
-  }
-
 
   if (isErrDataSource) {
     return (<>
       <h2> {errInfoDataSource.message} </h2>
     </>);
   }
+
+  const rowModel = table.getRowModel() ?? [];
 
   return (
     <>
@@ -329,22 +324,31 @@ const ProductDatatableV2 = () => {
             ))}
           </thead>
 
-          <tbody className="border border-green-500">
-            {table.getRowModel().rows.map((row) => (
 
-              <tr key={row.id} className="border border-green-500">
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="border border-green-500 px-2 ">
-                    {/* note: using div tag di tempat yg tepat */}
-                    <div className="flex flex-row  justify-center">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          <tbody className="border border-green-500">
+            {
+              rowModel.rows.length == 0 ?
+                (<tr className="border border-green-500 text-center justify-items-center">
+                  <td colSpan={5} className="border border-green-500 px-2">
+                    <div className="flex flex-row  justify-center py-4">
+                      {"Tidak mendapatkan data, data yang dicari tidak ada di sistem."}
                     </div>
                   </td>
-                ))}
-              </tr>
-            ))}
+                </tr>) : (
+                  rowModel.rows.map((row) => (
+                    <tr key={row.id} className="border border-green-500">
+                      {row.getVisibleCells().map((cell) => (
+                        <td key={cell.id} className="border border-green-500 px-2 ">
+                          {/* note: using div tag di tempat yg tepat */}
+                          <div className="flex flex-row  justify-center">
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </div>
+                        </td>
+                      ))}
+                    </tr>)
+                  )
+                )}
           </tbody>
-          {/* <footer className="flex flex-row gap-10"> */}
 
         </table>
         <div className="w-full ">

@@ -1,12 +1,13 @@
 // import ProductDatatable from "./Datatable";
-import ProductDatatable from "./DatatableProduct";
+// import ProductDatatable from "./DatatableProduct";
+import ProductDatatableV2 from "./DatatableProductV2";
 
 
 const Product = () => {
 
     return (
         <div>
-            <ProductDatatable/>
+            <ProductDatatableV2/>
         </div>
     )
 }
