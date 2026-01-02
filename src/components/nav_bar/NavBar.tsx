@@ -32,21 +32,13 @@ const NavBar = () => {
           ${open ? "block" : "hidden"} sm:flex
         `}
       >
-        <NavLink to="/home" className=" flex-1 w-20 sm:w-20  hover:bg-green-600">
-          Home
+        {/* <NavLink > */}
+        <NavLink to="order-management" >
+          Order Management
         </NavLink>
-        <NavLink to="dashboard" className=" flex-1 w-20 sm:w-20  hover:bg-green-600">
-          Dashboard
-        </NavLink>
-        <NavLink to="product" className=" flex-1 w-20 sm:w-20  hover:bg-green-600">
-          Product
-        </NavLink>
-        <NavLink to="random" className=" flex-1 w-20 sm:w-20  hover:bg-green-600">
-          Random
-        </NavLink>
-        <NavLink to="about" className=" flex-1 w-20 sm:w-20  hover:bg-green-600">
+        {/* <NavLink to="about" className=" flex-1 w-20 sm:w-20  hover:bg-green-600">
           About
-        </NavLink>
+        </NavLink> */}
 
 
 
