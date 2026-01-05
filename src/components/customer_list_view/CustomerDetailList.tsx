@@ -7,6 +7,7 @@ import {
     ChevronRight,
 
 } from 'lucide-react';
+import { Link } from 'react-router';
 
 // --- CUSTOMER DETAIL VIEW (The 5-10 Photo Requirement) ---
 
@@ -26,7 +27,9 @@ function CustomerDetailView({ order, onBack }: any) {
     return (
         <div className="space-y-6 w-[400px]">
             <button onClick={onBack} className="text-sm font-bold flex items-center gap-1 text-gray-500">
-                <ChevronRight className="rotate-180" size={16} /> BACK
+                <ChevronRight className="rotate-180" size={16} > <Link to="/customer-list-view">    </Link>  </ChevronRight>
+                <span>  BACK </span>
+
             </button>
 
             <div className="bg-white rounded-2xl border p-6 shadow-sm">
@@ -49,8 +52,13 @@ function CustomerDetailView({ order, onBack }: any) {
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {[...images].map((src, i) => (
-                            <div key={i} className="aspect-square bg-gray-100 rounded-lg overflow-hidden border">
-                                <img src={src?.src_photo} loading="lazy" alt="Progress" className="w-full h-full object-cover" />
+                            <div>
+                                <ol>
+                                    <li key={i} className=" text-center aspect-square bg-gray-100 rounded-lg overflow-hidden border">
+                                        <a className=''>{"Tahap"} {i+1}</a>
+                                        <img src={src?.src_photo} loading="lazy" alt="Progress" className="w-full h-full object-cover" />
+                                    </li>
+                                </ol>
                             </div>
                         ))}
                     </div>
