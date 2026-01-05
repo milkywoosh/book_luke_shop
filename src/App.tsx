@@ -7,6 +7,9 @@ import BaseLayout from './components/base_layout/BaseLayout.tsx';
 
 import About from './components/about/About.tsx';
 import OrderManagement from './components/order_management/OrderManagement.tsx';
+import AdminView from './components/admin_view/AdminView.tsx';
+import CustomerListView from './components/customer_list_view/CustomerListView.tsx';
+import CustomerDetailView from './components/customer_list_view/CustomerDetailList.tsx';
 
 function App() {
 
@@ -16,7 +19,10 @@ function App() {
     <div className='flex flex-col sm:flex-row w-full sm:min-w-[400px]'>
       <BaseLayout>
         <Routes>
-          <Route path='order-management' element={<OrderManagement />} />
+          <Route path='/' element={<OrderManagement />} />
+          <Route path='/admin-dashboard' element={<AdminView />} />
+          <Route path='/customer-list-view' element={<CustomerListView onSelect />} />
+          <Route path='/customer-detail' element={<CustomerDetailView />} />
           <Route path='about' element={<About />} />
         </Routes>
         {/* <BoxWrapper />  */}
