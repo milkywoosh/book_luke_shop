@@ -26,7 +26,7 @@ const serviceType: serviceTypeT = {
     NotCategorized: "Belum ada kategori"
 }
 
-const formatter = new Intl.DateTimeFormat('id-ID', {
+export const formatter = new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
@@ -38,30 +38,32 @@ type detailPhoto = {
     src_photo: string // url photo
 }
 
-type orderTailorT = {
-    id : string
+export type orderTailorT = {
+    dt_row_index: number
+    id: string
     order_number: string
-    start : string
-    customer: string
-    phone: string
-    type : string
-    status: string
+    start_process: string
+    full_name: string
+    phone_number: string
+    service_type: string
+    status_progress: string
     queue: number
-    price: number
+    total_price: number
     photos: detailPhoto[]
 }
 
 export const MOCK_ORDERS_TAILOR: orderTailorT[] = [
     {
+        dt_row_index: 1,
         id: '101',
         order_number: "ASD001",
-        start: formatter.format(new Date()),
-        customer: 'Rina',
-        phone: '081234',
-        type: serviceType.DressPatch,
-        status: statusProgress.ProsesPengerjaan,
+        start_process: formatter.format(new Date()),
+        full_name: 'Rina',
+        phone_number: '081234',
+        service_type: serviceType.DressPatch,
+        status_progress: statusProgress.ProsesPengerjaan,
         queue: 1,
-        price: 50,
+        total_price: 50,
         photos: [
             { id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
             { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
@@ -70,10 +72,23 @@ export const MOCK_ORDERS_TAILOR: orderTailorT[] = [
             { id: 5, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }
         ]
     },
-    { id: '102', order_number: "ASD0012", start: formatter.format(new Date()), customer: 'Maya', phone: '085678', type: serviceType.DesignAndCreate, status: statusProgress.DalamAntrian, queue: 2, price: 150, photos: [{ id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }] },
-    { id: '103', order_number: "ASD0013", start: formatter.format(new Date()), customer: 'Siti', phone: '089999', type: serviceType.DesignAndCreate, status: statusProgress.Fitting, queue: 3, price: 1200, photos: [{ id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }] },
-    { id: '103', order_number: "ASD0014", start: formatter.format(new Date()), customer: 'Siti', phone: '089999', type: serviceType.DesignAndCreate, status: statusProgress.SudahDiambilCust, queue: 3, price: 1200, photos: [{ id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }] },
-    { id: '103', order_number: "ASD0015", start: formatter.format(new Date()), customer: 'Siti', phone: '089999', type: serviceType.DesignAndCreate, status: statusProgress.Selesai, queue: 3, price: 1200, photos: [{ id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }] },
-    { id: '103', order_number: "ASD0016", start: formatter.format(new Date()), customer: 'Siti', phone: '089999', type: serviceType.DesignAndCreate, status: statusProgress.DalamAntrian, queue: 3, price: 1200, photos: [{ id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }, { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }] },
-    { id: '103', order_number: "ASD0017", start: formatter.format(new Date()), customer: 'Siti', phone: '089999', type: serviceType.DesignAndCreate, status: statusProgress.Fitting, queue: 3, price: 1200, photos: [] },
+    {
+        dt_row_index: 2,
+        id: '102',
+        order_number: "ASD002",
+        start_process: formatter.format(new Date()),
+        full_name: 'Rina',
+        phone_number: '081234',
+        service_type: serviceType.DressPatch,
+        status_progress: statusProgress.ProsesPengerjaan,
+        queue: 1,
+        total_price: 50,
+        photos: [
+            { id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 4, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 5, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }
+        ]
+    },
 ];
