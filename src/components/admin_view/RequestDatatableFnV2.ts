@@ -3,7 +3,7 @@ import {
   type PaginationState,
 } from '@tanstack/react-table';
 import axios, { type AxiosInstance } from 'axios';
-import type { DatatableResponse  } from '../../data_sourcing_api/data_tailor';
+import type { DatatableResponse, orderTailorT  } from '../../data_sourcing_api/data_tailor';
 
 export type RequestDatatableOptions = {
   /**
@@ -40,7 +40,7 @@ export async function requestDatatableFnV2<TBody>(
   pagination: PaginationState,
   colFilterParam: ColumnFiltersState,
   options: RequestDatatableOptions = {},
-): Promise<DatatableResponse<TBody>> {
+): Promise<DatatableResponse<orderTailorT[]>> {
 
   const { pageIndex, pageSize } = pagination;
 
@@ -86,7 +86,7 @@ export async function requestDatatableFnV2<TBody>(
       err?.message ??
       'Unknown error while fetching datatable';
 
-    const body = [] as TBody;
+    const body = [] as orderTailorT[];
     return {
       status,
       // keep body consistent; empty array by default
