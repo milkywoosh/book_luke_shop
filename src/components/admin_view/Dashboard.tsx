@@ -9,7 +9,7 @@ import {
     type PaginationState,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
-import { formatter, MOCK_ORDERS_TAILOR, type orderTailorT } from '../../data_sourcing_api/data_tailor';
+import { formatter, MOCK_ORDERS_TAILOR, type DatatableResponse, type orderTailorT } from '../../data_sourcing_api/data_tailor';
 
 import {
     Plus,
@@ -18,10 +18,9 @@ import {
 } from 'lucide-react';
 import { NavLink } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import requestDatatableFn from './RequestDatatableFn';
-
-
-
+// import requestDatatableFn from './RequestDatatableFn';
+import requestDatatableFnV2, { type RequestDatatableOptions } from './RequestDatatableFnV2';
+import axios from 'axios';
 
 
 
@@ -93,7 +92,12 @@ function AdminDashboard() {
 
     const [showPrice, setShowPrice] = useState(false);
 
+    
 
+    const options_: RequestDatatableOptions  = {
+        baseUrl: 'http://localhost:3000', 
+        client: axios
+    }
 
     const columns: ColumnDef<orderTailorT, any>[] = useMemo(() => [
         { accessorKey: 'dt_row_index', header: 'Index' },
@@ -102,8 +106,9 @@ function AdminDashboard() {
             accessorKey: 'start_process',
             header: 'Mulai Jahit',
             cell: (info: any) => {
-                console.log("cesss")
-                return formatter.format(info.getValue())
+                // console.log("cesss", info.getValue())
+                return formatter(info.getValue() ?? ""); 
+                
             }
 
         },
@@ -158,6 +163,8 @@ function AdminDashboard() {
 
     // TEST useQuery to fetch data orders
 
+    
+
     const {
         data: datatableSource,
         isError: isErrDataSource,
@@ -169,7 +176,8 @@ function AdminDashboard() {
 
             const [_key, PaginationStateVal, colFilterVal] = queryKey;
 
-            return requestDatatableFn(PaginationStateVal, colFilterVal);
+            // return requestDatatableFn(PaginationStateVal, colFilterVal);
+            return requestDatatableFnV2<DatatableResponse<orderTailorT[]>>(PaginationStateVal, colFilterVal, options_);
         },
         placeholderData: (previousData) => previousData, // This prevents the flicker/reset
         refetchOnWindowFocus: false,   // Disable refetch on window focus
@@ -178,7 +186,7 @@ function AdminDashboard() {
     })
 
     const table = useReactTable({
-        data: datatableSource, // biasanya get fetch from useQuery
+        data: datatableSource?.body ?? [], // biasanya get fetch from useQuery
         columns,
         state: {
             columnFilters
