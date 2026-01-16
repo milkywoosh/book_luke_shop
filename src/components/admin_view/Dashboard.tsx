@@ -16,7 +16,7 @@ import {
     Eye,
     EyeOff
 } from 'lucide-react';
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 // import requestDatatableFn from './RequestDatatableFn';
 import requestDatatableFnV2, { type RequestDatatableOptions } from './RequestDatatableFnV2';
@@ -26,6 +26,8 @@ import axios from 'axios';
 
 // --- ADMIN VIEW (Using TanStack Table) ---
 function AdminDashboard() {
+
+    const navigate = useNavigate()
 
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
@@ -245,7 +247,7 @@ function AdminDashboard() {
                             <button onClick={() => setShowPrice(!showPrice)} className="p-2 bg-gray-200 rounded">
                                 {showPrice ? <EyeOff size={18} /> : <Eye size={18} />}
                             </button>
-                            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 font-bold">
+                            <button onClick={() => navigate("/create-order")} className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 font-bold">
                                 <Plus size={18} /> New Order
                             </button>
                         </div>
