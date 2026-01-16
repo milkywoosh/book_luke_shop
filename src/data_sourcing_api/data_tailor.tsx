@@ -26,11 +26,11 @@ const serviceType: serviceTypeT = {
     NotCategorized: "Belum ada kategori"
 }
 
-export const formatter = new Intl.DateTimeFormat('id-ID', {
+export const formatter = (rawDate: string) => new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
-});
+}).format(new Date(rawDate))
 
 type detailPhoto = {
     id: number
@@ -38,26 +38,41 @@ type detailPhoto = {
     src_photo: string // url photo
 }
 
-export type orderTailorT = {
-    dt_row_index: number
-    id: string
-    order_number: string
-    start_process: string
-    full_name: string
-    phone_number: string
-    service_type: string
-    status_progress: string
-    queue: number
-    total_price: number
-    photos: detailPhoto[]
+export interface DatatableResponse<T> {
+    body: T;           // This will be your orderTailorT[]
+    status: number;
+    message: string;
+    // Add other consistent metadata here
 }
+
+
+export interface ApiResponse<T> {
+    status: number;
+    message: string;
+    body: T; // This is where your data actually lives
+}
+
+export type orderTailorT = {
+    dt_row_index: number;
+    id: string;
+    order_number: string;
+    start_process: string;
+    full_name: string;
+    phone_number: string;
+    service_type: string;
+    status_progress: string;
+    queue: number;
+    total_price: number;
+    photos: detailPhoto[];
+};
+
 
 export const MOCK_ORDERS_TAILOR: orderTailorT[] = [
     {
         dt_row_index: 1,
         id: '101',
         order_number: "ASD001",
-        start_process: formatter.format(new Date()),
+        start_process: formatter(new Date().toString()),
         full_name: 'Rina',
         phone_number: '081234',
         service_type: serviceType.DressPatch,
@@ -76,7 +91,7 @@ export const MOCK_ORDERS_TAILOR: orderTailorT[] = [
         dt_row_index: 2,
         id: '102',
         order_number: "ASD002",
-        start_process: formatter.format(new Date()),
+        start_process: formatter(new Date().toString()),
         full_name: 'Rina',
         phone_number: '081234',
         service_type: serviceType.DressPatch,
