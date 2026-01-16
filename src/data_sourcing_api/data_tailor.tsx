@@ -80,11 +80,11 @@ export const MOCK_ORDERS_TAILOR: orderTailorT[] = [
         queue: 1,
         total_price: 50,
         photos: [
-            { id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 4, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 5, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }
+            { id: 1, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 2, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 3, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 4, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 5, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }
         ]
     },
     {
@@ -99,11 +99,11 @@ export const MOCK_ORDERS_TAILOR: orderTailorT[] = [
         queue: 1,
         total_price: 50,
         photos: [
-            { id: 1, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 2, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 3, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 4, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
-            { id: 5, 'username': '081234', 'src_photo': 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }
+            { id: 1, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 2, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 3, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 4, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' },
+            { id: 5, username: '081234', src_photo: 'https://cdn2.thedogapi.com/images/HyWGexcVQ_1280.jpg' }
         ]
     },
 ];
