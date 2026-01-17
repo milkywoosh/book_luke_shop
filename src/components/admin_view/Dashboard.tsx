@@ -9,7 +9,8 @@ import {
     type PaginationState,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
-import { formatter, MOCK_ORDERS_TAILOR, type DatatableResponse, type orderTailorT } from '../../data_sourcing_api/data_tailor';
+import { formatter, MOCK_ORDERS_TAILOR, type orderTailorT } from '../../data_sourcing_api/data_tailor';
+
 
 import {
     Plus,
@@ -19,8 +20,9 @@ import {
 import { NavLink, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 // import requestDatatableFn from './RequestDatatableFn';
-import requestDatatableFnV2, { type RequestDatatableOptions } from './RequestDatatableFnV2';
+import requestDatatableFnV2, { type RequestDatatableOptions } from './DashboardV2.Get';
 import axios from 'axios';
+import type { DatatableResponse } from '../../data_sourcing_api/data_response_interface';
 
 
 
@@ -28,7 +30,7 @@ import axios from 'axios';
 function AdminDashboard() {
 
     const navigate = useNavigate()
-
+    
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
         pageSize: 10

@@ -1,11 +1,29 @@
 // NOTE: only admin can edit
 
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { postCreateOrder, type ReqBodyCreateNewOrder } from "./CreateOrder.Post.tsx";
+import ModalPopUp from "../pop_up/ModalPopUp";
 
 const CreateOrder = () => {
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [isOpenModal, setOpenModal] = useState<boolean>(false);
+    const [popUpMessage, setPopUpMessage] = useState<string>("")
+
+    const navigate = useNavigate();
+
+    const DirectToDashboard = (message: string, status: number) => {
+        setPopUpMessage(message);
+        setOpenModal(true);
+        if (status == 200) {
+            setTimeout(() => {
+                navigate("/admin-dashboard");
+            }, 1000)
+        }
+    }
+
+
     const handleSubmit = (e: any) => {
         e.preventDefault();
         setLoading(true);
@@ -18,11 +36,71 @@ const CreateOrder = () => {
         console.log("Payload to send:", data);
 
         // POST API to SERVER API
-        // onHandleLogin
+        /*
+        {
+            "phone_number": "2312124124",
+            "full_name": "welli don",
+            "complete_address": "Jl. Lmbr",
+            "service_type": "patch"
+            }
+            */
+        // postCreateOrder()
+        const payloadReq = data as ReqBodyCreateNewOrder
+        postCreateOrder(payloadReq, "", {})
+            .then(val => {
+                console.log("val post postCreateOrder", val)
+                // functino direct to dashboard
+                DirectToDashboard(val.message, val.status)
+
+            })
+            .catch(err => {
+                setPopUpMessage(`eror: ${err}`)
+                setOpenModal(true);
+                console.log("err postCreateOrder", err)
+            })
+
     };
 
-    return (
+    const PopUpSuccess = (
+        <div className=" bg-gray-50 font-sans text-gray-900 pb-10">
+            <div className='bg-white border-b px-4 py-3 sticky shadow-sm flex justify-between items-center'>
+                <div className='border border-blue-600 px-2 py-1 sticky top-0 z-20'>
+                    <h2 className="font-black text-xl tracking-tighter text-blue-600">MAMA </h2>
+                    <h2 className="font-black text-xl tracking-tighter text-blue-600">MISKHA </h2>
+                    <h2 className="font-black text-xl tracking-tighter text-blue-600">JAHIT...</h2>
+                </div>
+            </div>
 
+
+
+            <div className="w-[400px] h-96 bg-gray-50 font-sans text-gray-900 pb-10 border-black pt-3 px-4">
+
+
+
+                <div className="items-center p-16 border shadow-xl rounded-sm border-gray-100">
+                    <h2 className="text-center text-3xl font-extrabold text-gray-900">
+                        Pop Up Test
+                    </h2>
+                    <p className="mt-2 text-center font-extrabold text-md text-gray-600 my-2">
+                        {popUpMessage}
+                    </p>
+                    <button
+                        className="flex-col justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:bg-blue-300"
+                        onClick={() => setOpenModal(false)}
+                    >
+                        Close Pop Up
+                    </button>
+                </div>
+
+
+
+            </div>
+        </div>
+    )
+
+    if (isOpenModal) return PopUpSuccess;
+
+    return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-10">
             <div className='bg-white border-b px-4 py-3 sticky shadow-sm flex justify-between items-center'>
                 <div className='border border-blue-600 px-2 py-1 sticky top-0 z-20'>
@@ -39,7 +117,7 @@ const CreateOrder = () => {
                 >
                     Go to Dashboard
                 </NavLink>
-              
+
             </nav>
 
             <div className="w-[400px] bg-gray-50 font-sans text-gray-900 pb-10">
@@ -138,18 +216,15 @@ const CreateOrder = () => {
 
                         <button
                             type="submit"
-                            disabled={loading}
-                            className="group relative  flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:bg-blue-300"
+                            className="group relative  flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                         >
-                            {loading ? "Authenticating..." : "Upload"}
+                            {"Upload"}
                         </button>
                     </form>
 
                 </div>
             </div>
         </div>
-
-
     );
 }
 

@@ -38,12 +38,7 @@ type detailPhoto = {
     src_photo: string // url photo
 }
 
-export interface DatatableResponse<T> {
-    body: T;           // This will be your orderTailorT[]
-    status: number;
-    message: string;
-    // Add other consistent metadata here
-}
+
 
 
 export interface ApiResponse<T> {

@@ -1,8 +1,10 @@
+import PopUp from "../pop_up/PopUpBasic";
 
-const NotifCreateOrder = () => {
+const NotifCreateOrder = (message: string, onClose: () => void) => {
 
     return (
-        <div>
+        <div
+            className="">
             {/*
                 NOTE: notif POP UPjika sukses atau gagal
                 MUNCULKAN hanya pada sebagian di tengah halaman, tanpa menghilangkan tampilan belakang
@@ -18,6 +20,8 @@ const NotifCreateOrder = () => {
                 ===================
                 
              */}
+
+            <PopUp message={message} onClose={onClose} />
         </div>
     );
 }
