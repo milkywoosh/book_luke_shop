@@ -11,6 +11,7 @@ import CustomerListView from './components/customer_list_view/CustomerListView.t
 import CustomerDetailView from './components/customer_list_view/CustomerDetailList.tsx';
 import AdminDashboard from './components/admin_view/Dashboard.tsx';
 import CreateOrder from './components/order_management/CreateOrder.tsx';
+import EditOrder from './components/order_management/EditOrder.tsx';
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
           <Route path='/admin-dashboard' element={<AdminDashboard />} />
           <Route path='/customer-list-view' element={<CustomerListView onSelect />} />
           <Route path='/customer-detail' element={<CustomerDetailView />} />
-          <Route path='/create-order' element={<CreateOrder/>} />
+          <Route path='/create-order' element={<CreateOrder />} />
+          <Route path='/edit-order/:orderNumber' element={<EditOrder/>} />
           <Route path='about' element={<About />} />
         </Routes>
         {/* <BoxWrapper />  */}
