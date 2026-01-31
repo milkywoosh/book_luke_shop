@@ -9,11 +9,11 @@ export type ReqCreateOrderOption = {
       * Base URL of the backend service, e.g. "http://localhost:3000"
       * Defaults to "http://localhost:3000" to keep backward compatibility.
       */
-    baseUrl?: string;
+    baseUrl: string;
     /**
      * Optional axios instance to allow easier testing / custom interceptors
      */
-    client?: AxiosInstance;
+    client: AxiosInstance;
 }
 
 // {
@@ -33,17 +33,20 @@ export type ReqBodyCreateNewOrder = {
     // createdAt: string
 }
 
-export async function postCreateOrder<TBody>(
+export async function postCreateOrderFn<TBody>(
     reqBody: ReqBodyCreateNewOrder,
     userId: string,
     options: ReqCreateOrderOption,
 ): Promise<DataAPIResponse<any>> {
 
     try {
+        
+
 
         // type of response <DataAPIResponse<any>>
-        const res = await axios.post<DataAPIResponse<any>>(
-            `${DEFAULT_BASE_URL}/api/order-customer/create`,
+        const res = await options.client.post<DataAPIResponse<any>>(
+            // `${DEFAULT_BASE_URL}/api/order-customer/create`, api v1
+            `${options.baseUrl}/api/order/create`, // api v2
             reqBody,
             {}
         );

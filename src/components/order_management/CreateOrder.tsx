@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router";
-import { postCreateOrder, type ReqBodyCreateNewOrder } from "./CreateOrder.Post.tsx";
-import ModalPopUp from "../pop_up/ModalPopUp";
+import { postCreateOrderFn, type ReqBodyCreateNewOrder } from "./CreateOrder.Post.tsx";
+import { DEFAULT_BASE_URL } from "../../data_sourcing_api/base_url.tsx";
+import axios from "axios";
 
 const CreateOrder = () => {
 
@@ -19,7 +20,7 @@ const CreateOrder = () => {
         if (status == 200) {
             setTimeout(() => {
                 navigate("/admin-dashboard");
-            }, 1000)
+            }, 3000)
         }
     }
 
@@ -46,17 +47,18 @@ const CreateOrder = () => {
             */
         // postCreateOrder()
         const payloadReq = data as ReqBodyCreateNewOrder
-        postCreateOrder(payloadReq, "", {})
+        postCreateOrderFn(payloadReq, "", {
+            baseUrl: DEFAULT_BASE_URL,
+            client: axios,
+        })
             .then(val => {
                 console.log("val post postCreateOrder", val)
-                // functino direct to dashboard
                 DirectToDashboard(val.message, val.status)
 
             })
             .catch(err => {
-                setPopUpMessage(`eror: ${err}`)
+                setPopUpMessage(`error: ${err}`)
                 setOpenModal(true);
-                console.log("err postCreateOrder", err)
             })
 
     };
@@ -71,17 +73,12 @@ const CreateOrder = () => {
                 </div>
             </div>
 
-
-
             <div className="w-[400px] h-96 bg-gray-50 font-sans text-gray-900 pb-10 border-black pt-3 px-4">
-
-
-
                 <div className="items-center p-16 border shadow-xl rounded-sm border-gray-100">
                     <h2 className="text-center text-3xl font-extrabold text-gray-900">
                         Pop Up Test
                     </h2>
-                    <p className="mt-2 text-center font-extrabold text-md text-gray-600 my-2">
+                    <p className="mt-2 text-center font-extrabold text-md text-green-600 my-2">
                         {popUpMessage}
                     </p>
                     <button
@@ -102,6 +99,8 @@ const CreateOrder = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-10">
+
+            {/* separate_component */}
             <div className='bg-white border-b px-4 py-3 sticky shadow-sm flex justify-between items-center'>
                 <div className='border border-blue-600 px-2 py-1 sticky top-0 z-20'>
                     <h2 className="font-black text-xl tracking-tighter text-blue-600">MAMA </h2>
@@ -122,8 +121,7 @@ const CreateOrder = () => {
 
             <div className="w-[400px] bg-gray-50 font-sans text-gray-900 pb-10">
 
-
-                <div className=" space-y-8 p-8 bg-white rounded-2xl shadow-xl border border-gray-100">
+                <div className="space-y-8 p-8 bg-white rounded-2xl shadow-xl border border-gray-100">
 
                     <div>
                         <h2 className="text-center text-3xl font-extrabold text-gray-900">
@@ -216,7 +214,7 @@ const CreateOrder = () => {
 
                         <button
                             type="submit"
-                            className="group relative  flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                            className="group relative flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                         >
                             {"Upload"}
                         </button>
