@@ -35,7 +35,7 @@ const table = useReactTable(options) // pelajari .API() dari useReactTable()
 
 
 
-========== CASE CHECK CLASSNAME =================
+========== CASE CHECK CLASSNAME TAILWIND CSS =================
 source: https://www.youtube.com/watch?v=tZV_Ax9TyUY menit 14.50
 
 container (only exists in v3 not v4) <??>
@@ -47,3 +47,7 @@ hidden <meng-hide element>
 
 mx-auto<margin auto left and right>
 
+
+=============== TEST VITEST =================
+
+test specific file.test.tsx ==> npm run test ./src/components/pop_up/PopUp.test.tsx

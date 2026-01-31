@@ -10,17 +10,17 @@ import { useQuery } from '@tanstack/react-query';
 // --- CUSTOMER LIST VIEW ---
 function CustomerListView({ onSelect }: { onSelect: any }) {
 
-    const {
-        data: listOrderCustomer,
-        isError,
-        isPending,
-        isLoading,
-        refetch,
-    } = useQuery({
-        queryKey: ["listOrderCustCache"],
-        queryFn: () => { },
+    // const {
+    //     data: listOrderCustomer,
+    //     isError,
+    //     isPending,
+    //     isLoading,
+    //     refetch,
+    // } = useQuery({
+    //     queryKey: ["listOrderCustCache"],
+    //     queryFn: () => { },
 
-    })
+    // })
 
 
     return (
