@@ -8,6 +8,10 @@ export default defineConfig({
     react(),
     // tailwindcss(),
   ],
+  server: {
+    port: 5173,      // Replace with your desired port
+    strictPort: true // Force Vite to fail if the port is busy instead of defaulting to 5174
+  },
   test: {
     environment: 'jsdom',
     globals: true,
