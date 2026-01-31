@@ -19,9 +19,6 @@ export type RequestDatatableOptions = {
   client?: AxiosInstance;
 };
 
-
-
-
 const mappingReq: { [key: string]: string } = {
   order_number: 'orderNumber',
   phone_number: 'phoneNumber',
@@ -62,6 +59,8 @@ export async function requestDatatableFnV2<TBody>(
     params.append(mappedKey, String(rawValue));
   });
 
+  console.log("paramsss: ", params)
+
   const baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
   const client = options.client ?? axios;
 
@@ -71,16 +70,23 @@ export async function requestDatatableFnV2<TBody>(
       message?: string;
       body: any;
     }>(
-      `${baseUrl}/api/order-customer/datatable?${params.toString()}`,
+      // `${baseUrl}/api/order-customer/datatable?${params.toString()}`, // api v1
+      `${baseUrl}/api/order/datatable?${params.toString()}`, // api v2
       {},
     );
 
+    console.log("cuss info: ", res)
+    console.log("cuss info: ", res.data)
+
+
     return {
       status: res.status,
-      body: res.data.body ?? [],
+      body: res.data.body.data ?? [],
       message: res.data.message ?? "error not defined",
     };
   } catch (err: any) {
+
+    console.log("cuss oke: ", err)
     // Normalise known axios error shape
     const status: number = err?.response?.status ?? 0;
     const message: string =

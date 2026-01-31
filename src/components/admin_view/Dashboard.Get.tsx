@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-table';
 
 import axios from 'axios';
+import { DEFAULT_BASE_URL } from '../../data_sourcing_api/base_url';
 
 const requestDatatableFn = async (pagination: PaginationState, colFilterParam: ColumnFiltersState) => {
 
@@ -41,19 +42,19 @@ const requestDatatableFn = async (pagination: PaginationState, colFilterParam: C
         // modify params
 
         params.append(mappingReq[val.id] as string, val.value as string)
-    })
+    });
 
+    console.log("params: ", params)
     // console.log("ceess params: ", params);
     // console.log("ceess params.toString(): ", params.toString());
 
 
 
     // const url_product = "https://item-management-dev-int-newscmt-dev.apps.kpaasjtn1.telkom.co.id"
-    const url_order_cust = "http://localhost:3000"
     // const result = await axios.get(`${url_product}/datatable-product-be?${params.toString()}`, {})
-    return axios.get(`${url_order_cust}/order-customer/datatable-all-customer?${params.toString()}`, {})
+    return axios.get(`${DEFAULT_BASE_URL}/api/order/datatable?${params.toString()}`, {})
         .then(res => {
-            // console.log("resss: ", res)
+            console.log("resss: ", res)
             return res.data.body;
         })
         .catch((err) => {
